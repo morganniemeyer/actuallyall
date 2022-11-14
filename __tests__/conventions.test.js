@@ -83,9 +83,9 @@ describe('conventions routes', () => {
     `);
   });
   it('should PUT new data into con with id #1', async () => {
-    const res = await (
-      await request(app).put('/conventions/1')
-    ).send({ name: 'AwesomeCon' });
+    const res = await request(app)
+      .put('/conventions/1')
+      .send({ name: 'AwesomeCon' });
     expect(res.status).toBe(200);
     expect(res.body.name).toBe('AwesomeCon');
   });
