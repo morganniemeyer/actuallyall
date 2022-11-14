@@ -95,8 +95,8 @@ describe('conventions routes', () => {
   });
   it('DELETE /conventions/1 should delete #1', async () => {
     const res = await request(app).delete('/conventions/1');
-    expect(res.status).toBe(204);
-    const getRes = await request(app).get('conventions/1');
+    expect(res.status).toBe(200);
+    const getRes = await request(app).get('/conventions/1');
     expect(getRes.status).toBe(404);
   });
 
