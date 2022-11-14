@@ -89,6 +89,16 @@ describe('conventions routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.name).toBe('AwesomeCon');
   });
+  it('GET /conventions/xyz should return 404', async () => {
+    const res = await request(app).get('/conventions/456');
+    expect(res.status).toBe(404);
+  });
+  it('DELETE /conventions/1 should delete #1', async () => {
+    const res = await request(app).delete('/conventions/1');
+    expect(res.status).toBe(204);
+    const getRes = await request(app).get('conventions/1');
+    expect(getRes.status).toBe(404);
+  });
 
   afterAll(() => {
     pool.end();
