@@ -11,15 +11,15 @@ describe('conventions routes', () => {
     const res = await request(app).get('/conventions');
     expect(res.status).toBe(200);
     expect(res.body).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "genre": "multi",
-          "id": "1",
-          "name": "Twin Cities Con",
-          "season": "fall/winter",
-          "structure": "corporation",
-        },
-        Object {
+    Array [
+      Object {
+        "genre": "multi",
+        "id": "1",
+        "name": "Twin Cities Con",
+        "season": "fall/winter",
+        "structure": "corporation",
+      },
+      Object {
           "genre": "anime",
           "id": "2",
           "name": "Anime Detour",
@@ -49,6 +49,17 @@ describe('conventions routes', () => {
         },
       ]
     `);
+  });
+  it('should GET conventions/1', async () => {
+    const res = await request(app).get('/conventions/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      genre: 'multi',
+      id: '1',
+      name: 'Twin Cities Con',
+      season: 'fall/winter',
+      structure: 'corporation',
+    });
   });
   afterAll(() => {
     pool.end();
