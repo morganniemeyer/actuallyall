@@ -70,9 +70,17 @@ describe('conventions routes', () => {
       season: 'summer',
       structure: 'corporation',
     };
-    const res = await (await request(app).post('/conventions')).send(newCon);
+    const res = await request(app).post('/conventions').send(newCon);
     expect(res.status).toBe(200);
-    expect(res.body).toMatchInlineSnapshot();
+    expect(res.body).toMatchInlineSnapshot(`
+      Object {
+        "genre": "multi",
+        "id": "6",
+        "name": "SDCC",
+        "season": "summer",
+        "structure": "corporation",
+      }
+    `);
   });
 
   afterAll(() => {
