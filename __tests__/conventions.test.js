@@ -63,6 +63,18 @@ describe('conventions routes', () => {
       }
     `);
   });
+  it('it should /POST a new con to the list', async () => {
+    const newCon = {
+      name: 'SDCC',
+      genre: 'multi',
+      season: 'summer',
+      structure: 'corporation',
+    };
+    const res = await (await request(app).post('/conventions')).send(newCon);
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchInlineSnapshot();
+  });
+
   afterAll(() => {
     pool.end();
   });
