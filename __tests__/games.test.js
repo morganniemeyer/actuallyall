@@ -45,6 +45,11 @@ describe('backend-express-template routes', () => {
       ]
     `);
   });
+  it('should GET games/1', async () => {
+    const res = await request(app).get('/games/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchInlineSnapshot();
+  });
   afterAll(() => {
     pool.end();
   });
