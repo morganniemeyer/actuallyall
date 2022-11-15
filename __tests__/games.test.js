@@ -57,6 +57,16 @@ describe('backend-express-template routes', () => {
       }
     `);
   });
+  it('it should /POST a new game to the list', async () => {
+    const newGame = {
+      name: 'Floor Plan',
+      type: 'roll-and-write',
+      played: false,
+    };
+    const res = await request(app).post('/games').send(newGame);
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchInlineSnapshot();
+  });
   afterAll(() => {
     pool.end();
   });
