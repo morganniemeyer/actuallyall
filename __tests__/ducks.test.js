@@ -57,6 +57,16 @@ describe('backend-express-template routes', () => {
       }
     `);
   });
+  it('it should /POST a new duck to the list', async () => {
+    const newDuck = {
+      name: 'Daisy',
+      type: 'Duck',
+      relation: 'girlfriend',
+    };
+    const res = await request(app).post('/ducks').send(newDuck);
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchInlineSnapshot();
+  });
   afterAll(() => {
     pool.end();
   });
