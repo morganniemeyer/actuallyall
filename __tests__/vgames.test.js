@@ -65,7 +65,21 @@ describe('vgames routes', () => {
     };
     const res = await request(app).post('/vgames').send(newVGame);
     expect(res.status).toBe(200);
-    expect(res.body).toMatchInlineSnapshot();
+    expect(res.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "6",
+        "name": "Dreamlight Valley",
+        "played": true,
+        "type": "real time sim",
+      }
+    `);
+  });
+  it('should PUT new data into video game with id #1', async () => {
+    const res = await request(app)
+      .put('/vgames/1')
+      .send({ name: 'Stardew Valley' });
+    expect(res.status).toBe(200);
+    expect(res.body.name).toBe('Stardew Valley');
   });
   afterAll(() => {
     pool.end();
