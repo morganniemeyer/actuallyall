@@ -74,6 +74,13 @@ describe('backend-express-template routes', () => {
       }
     `);
   });
+  it('should PUT new data into game with id #1', async () => {
+    const res = await request(app)
+      .put('/games/1')
+      .send({ name: 'Deadly Doodles' });
+    expect(res.status).toBe(200);
+    expect(res.body.name).toBe('Deadly Doodles');
+  });
   afterAll(() => {
     pool.end();
   });
