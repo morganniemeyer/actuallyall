@@ -2,6 +2,7 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 DROP TABLE IF EXISTS conventions;
 DROP TABLE IF EXISTS games;
+DROP TABLE IF EXISTS ducks;
 
 
 CREATE TABLE conventions (
@@ -17,6 +18,13 @@ CREATE TABLE games (
     name VARCHAR,
     type VARCHAR,
     played BOOLEAN
+);
+
+CREATE TABLE ducks (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR,
+    type VARCHAR,
+    relation VARCHAR
 );
 
 INSERT INTO conventions (
@@ -38,3 +46,13 @@ VALUES
 ('Flamecraft', 'worker placement', FALSE),
 ('Ticket To Ride', 'route completion', TRUE),
 ('Sagrada', 'dice-placement', TRUE);
+
+INSERT INTO ducks (
+    name, type, relation
+)
+VALUES
+('Donald', 'Duck', 'primary'),
+('Scrooge', 'McDuck', 'Uncle'),
+('Huey', 'Duck', 'nephew'),
+('Louie', 'Duck', 'nephew'),
+('Flintheart', 'Glomgold', 'unrelated');
