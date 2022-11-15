@@ -48,6 +48,23 @@ describe('vgames routes', () => {
   it('should GET vgames/1', async () => {
     const res = await request(app).get('/vgames/1');
     expect(res.status).toBe(200);
+    expect(res.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "1",
+        "name": "Harvest Moon",
+        "played": true,
+        "type": "farming",
+      }
+    `);
+  });
+  it('it should /POST a new game to the list', async () => {
+    const newVGame = {
+      name: 'Dreamlight Valley',
+      type: 'real time sim',
+      played: true,
+    };
+    const res = await request(app).post('/vgames').send(newVGame);
+    expect(res.status).toBe(200);
     expect(res.body).toMatchInlineSnapshot();
   });
   afterAll(() => {
