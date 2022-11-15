@@ -81,6 +81,16 @@ describe('backend-express-template routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.name).toBe('Deadly Doodles');
   });
+  it('GET /games/xyz should return 404', async () => {
+    const res = await request(app).get('/games/456');
+    expect(res.status).toBe(404);
+  });
+  it('DELETE /games/1 should delete #1', async () => {
+    const res = await request(app).delete('/games/1');
+    expect(res.status).toBe(200);
+    const getRes = await request(app).get('/games/1');
+    expect(getRes.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
