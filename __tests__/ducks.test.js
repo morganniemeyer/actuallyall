@@ -7,8 +7,10 @@ describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it.skip('example test - delete me!', () => {
-    expect(1).toEqual(1);
+  it('should GET list of ducks', async () => {
+    const res = await request(app).get('/ducks');
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchInlineSnapshot();
   });
   afterAll(() => {
     pool.end();
