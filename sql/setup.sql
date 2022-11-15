@@ -3,6 +3,8 @@
 DROP TABLE IF EXISTS conventions;
 DROP TABLE IF EXISTS games;
 DROP TABLE IF EXISTS ducks;
+DROP TABLE IF EXISTS vgames;
+
 
 
 CREATE TABLE conventions (
@@ -25,6 +27,13 @@ CREATE TABLE ducks (
     name VARCHAR,
     type VARCHAR,
     relation VARCHAR
+);
+
+CREATE TABLE vgames (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR,
+    type VARCHAR,
+    played BOOLEAN
 );
 
 INSERT INTO conventions (
@@ -56,3 +65,13 @@ VALUES
 ('Huey', 'Duck', 'nephew'),
 ('Louie', 'Duck', 'nephew'),
 ('Flintheart', 'Glomgold', 'unrelated');
+
+INSERT INTO vgames (
+    name, type, played
+)
+VALUES
+('Harvest Moon', 'farming', TRUE),
+('Animal Crossing', 'real time sim', TRUE),
+('Katamari Damacy', 'rolling', TRUE),
+('Sims', 'life sim', TRUE),
+('Civilization 6', 'strategy', TRUE);
