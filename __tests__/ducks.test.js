@@ -79,6 +79,16 @@ describe('backend-express-template routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.name).toBe('Grandma');
   });
+  it('GET /ducks/xyz should return 404', async () => {
+    const res = await request(app).get('/ducks/456');
+    expect(res.status).toBe(404);
+  });
+  it('DELETE /ducks/1 should delete #1', async () => {
+    const res = await request(app).delete('/ducks/1');
+    expect(res.status).toBe(200);
+    const getRes = await request(app).get('/ducks/1');
+    expect(getRes.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
