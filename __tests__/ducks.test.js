@@ -48,7 +48,14 @@ describe('backend-express-template routes', () => {
   it('should GET ducks/1', async () => {
     const res = await request(app).get('/ducks/1');
     expect(res.status).toBe(200);
-    expect(res.body).toMatchInlineSnapshot();
+    expect(res.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "1",
+        "name": "Donald",
+        "relation": "primary",
+        "type": "Duck",
+      }
+    `);
   });
   afterAll(() => {
     pool.end();
