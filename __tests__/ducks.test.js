@@ -74,6 +74,11 @@ describe('backend-express-template routes', () => {
       }
     `);
   });
+  it('should PUT new data into con with id #1', async () => {
+    const res = await request(app).put('/ducks/1').send({ name: 'Grandma' });
+    expect(res.status).toBe(200);
+    expect(res.body.name).toBe('Grandma');
+  });
   afterAll(() => {
     pool.end();
   });
