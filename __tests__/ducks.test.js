@@ -45,6 +45,11 @@ describe('backend-express-template routes', () => {
       ]
     `);
   });
+  it('should GET conventions/1', async () => {
+    const res = await request(app).get('/conventions/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchInlineSnapshot();
+  });
   afterAll(() => {
     pool.end();
   });
