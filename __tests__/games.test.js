@@ -65,7 +65,14 @@ describe('backend-express-template routes', () => {
     };
     const res = await request(app).post('/games').send(newGame);
     expect(res.status).toBe(200);
-    expect(res.body).toMatchInlineSnapshot();
+    expect(res.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "6",
+        "name": "Floor Plan",
+        "played": false,
+        "type": "roll-and-write",
+      }
+    `);
   });
   afterAll(() => {
     pool.end();
