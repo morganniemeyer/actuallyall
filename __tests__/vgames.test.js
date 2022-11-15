@@ -81,6 +81,16 @@ describe('vgames routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.name).toBe('Stardew Valley');
   });
+  it('GET /vgames/xyz should return 404', async () => {
+    const res = await request(app).get('/vgames/456');
+    expect(res.status).toBe(404);
+  });
+  it('DELETE /vgames/1 should delete #1', async () => {
+    const res = await request(app).delete('/vgames/1');
+    expect(res.status).toBe(200);
+    const getRes = await request(app).get('/vgames/1');
+    expect(getRes.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
